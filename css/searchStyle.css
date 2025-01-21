@@ -52,12 +52,9 @@ h1 {
     color:var(--highlightedTextColor);
 }
 
-a {
+a, button {
     color: var(--buttonTextColor);
     text-decoration: none;
-}
-
-button {
     color: var(--buttonTextColor);
     background: var(--buttonBackgroundColor);
     padding:var(--mostPadding);
@@ -66,8 +63,9 @@ button {
     border-radius: var(--mostRadius);
     border: 2px solid var(--color10);
     transition: all 0.1s;
-
 }
+
+
 
 button:hover {
     border: 2px solid var(--color30);

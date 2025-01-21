@@ -87,16 +87,7 @@ h1 {
     color:var(--highlightedTextColor);
 }
 
-a {
-    color: var(--buttonTextColor);
-    text-decoration: none;
-}
-
-
-
-
-
-button {
+a, button {
     color: var(--buttonTextColor);
     background: var(--buttonBackgroundColor);
     padding:var(--mostPadding);
@@ -105,10 +96,14 @@ button {
     border-radius: var(--mostRadius);
     border: 2px solid var(--color10);
     transition: all 0.1s;
-    /*
-    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
-    */
+    color: var(--buttonTextColor);
+    text-decoration: none;
 }
+
+
+
+
+
 
 button:hover {
     border: 2px solid var(--color30);
