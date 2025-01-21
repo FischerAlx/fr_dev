@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="css/loginStyle.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="sticky">
+        <table style="width: 100%;">
+            <tr>
+                <th style="text-align: left; font-size: 17pt;">FischerAlex.booking</th>
+                <th style="text-align: right;"><button id="openLogin" type="button"><a href="login.html">login</a></button></th>
+            </tr>
+        </table>
+        <nav>
+            <table id="navTable">
+                <tr>
+                    <th><button id="openMainPage" type="button" onclick="location.href='mainPage.html';">Home</button></th>
+                    <th><button id="openSearch" type="button" onclick="location.href='search.html';">Search</button></th>
+                    <th><button id="openOurNews" type="button" onclick="location.href='ourNews.html';">Our News</button></th>
+                    <th><button id="openAboutUs" type="button" onclick="location.href='aboutUs.html';">About Us</button></th>
+                </tr>
+            </table>
+        </nav>
+    </header>
+
+    <main>
+
+        <form id="registrationForm" class="form">
+            <p class="message">Signup</p>
+                <div class="flex">
+                    <label>
+                        <input name="firstname" required="" placeholder="" type="text" class="input" style="width: 85%;">
+                        <span>Firstname</span>
+                    </label>
+                
+                    <label>
+                        <input name="lastname" required="" placeholder="" type="text" class="input">
+                        <span>Lastname</span>
+                    </label>
+                </div>  
+                    
+                <label>
+                    <input name="email" required="" placeholder="" type="email" class="input">
+                    <span>Email</span>
+                </label> 
+
+                <label>
+                    <input name="password" required="" placeholder="" type="password" class="input">
+                    <span>Password</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="password" class="input">
+                    <span>Confirm password</span>
+                </label>
+                <button id="openModal" class="submit" type="button" onclick="location.href='mainPage.html'; openModalButton()">Submit</button>
+                <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+        </form>
+        
+
+       
+
+    </main>
+
+
+    <footer>
+        <p>&copy; by FischerAlex</p>
+        <a href="aboutUs.html"> imperssum</a>
+    </footer>
+</body>
+</html>
