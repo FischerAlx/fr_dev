@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    const modalContainer = document.getElementById('modalContainer');
+    const openModalButton = document.getElementById('openModal');
+
     if (openModalButton) {
         openModalButton.addEventListener('click', () => {
 
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }   
-    
+
     
     if (document.getElementById('registrationForm')) {
         document.getElementById('registrationForm').addEventListener('submit', function(e) {

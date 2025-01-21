@@ -19,11 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const finderPlaceCard = document.getElementById('finderPlaceExtension');
     const finderDateCard = document.getElementById('finderDateExtension');
     const finderNumberOfVisitorsExtensionCard = document.getElementById('finderNumberOfVisitorsExtension');
-    const modalContainer = document.getElementById('modalContainer');
-    const openModalButton = document.getElementById('openModal');
 
-    let startingDate = "Check-in Date"
-    let endingDate = "Check-out Date"
+
+
+    const tripInfo = {
+        place: "",
+        startingDate: null,
+        endingDate: null,
+        adult: 0,
+        child: 0,
+        room: 0,
+    }
+
+    let startingDate = new Date("invalid-date-string");
+    let endingDate = new Date("invalid-date-string");
 
 
 
@@ -35,14 +44,112 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+    
+
+    if (firstCalendarContainer && secondCalendarContainer) {
+        for (let day = 1; day <= daysInFirstMonth; day++) {
+            const button = document.createElement('button');
+            button.textContent = day;
+            button.classList.add('firstCalendarButton');
+            firstCalendarContainer.appendChild(button);
+        }
+
+        for (let day = 1; day <= daysInSecondMonth; day++) {
+            const button = document.createElement('button');
+            button.textContent = day;
+            button.classList.add('secondCalendarButton');
+            secondCalendarContainer.appendChild(button);
+        }
+    }
+
+    const firstCalendarButtons = document.querySelectorAll('.firstCalendarButton');
+    const secondCalendarButtons = document.querySelectorAll('.secondCalendarButton');
+
+    firstCalendarButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            console.log("starting: " + startingDate);
+            console.log("ending: " + endingDate);
+            console.log(tripInfo)
+            if (isNaN(startingDate)) {
+                startingDate = new Date();
+                startingDate.setDate(parseInt(button.textContent));
+                startingDate.setMonth(0);
+                tripInfo.startingDate = startingDate.getDate() + ", " + (startingDate.getMonth() + 1);
+                button.style.background = '#122b39';
+                console.log(button);
+            } else {
+                let bufDate = new Date(2025, 0, parseInt(button.textContent))
+                if (startingDate < bufDate) {
+                    endingDate = new Date();
+                    endingDate.setDate(parseInt(button.textContent));
+                    endingDate.setMonth(0);
+                    tripInfo.endingDate = endingDate.getDate() + ", " + (endingDate.getMonth() + 1);
+                    button.style.background = '#122b39';
+                    startingDate = new Date("invalid-date-string");
+                    endingDate = new Date("invalid-date-string");
+                }
+            }
+            console.log("starting: " + startingDate);
+            console.log("ending: " + endingDate);
+            console.log(tripInfo)
+
+        });
+    });
+    secondCalendarButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            console.log("starting: " + startingDate);
+            console.log("ending: " + endingDate);
+            console.log(tripInfo)
+            if (isNaN(startingDate)) {
+                startingDate = new Date();
+                startingDate.setDate(parseInt(button.textContent));
+                startingDate.setMonth(1);
+                tripInfo.startingDate = startingDate.getDate() + ", " + (startingDate.getMonth() + 1);
+                button.style.background = '#122b39';
+                console.log(button);
+            } else {
+                let bufDate = new Date(2025, 1, parseInt(button.textContent))
+                if (startingDate < bufDate) {
+                    endingDate = new Date();
+                    endingDate.setDate(parseInt(button.textContent));
+                    endingDate.setMonth(1);
+                    tripInfo.endingDate = endingDate.getDate() + ", " + (endingDate.getMonth() + 1);
+                    button.style.background = '#122b39';
+                    startingDate = new Date("invalid-date-string");
+                    endingDate = new Date("invalid-date-string");
+                }
+            }
+            console.log("starting: " + startingDate);
+            console.log("ending: " + endingDate);
+            console.log(tripInfo)
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (decrementAdult && decrementChild && decrementRoom && incrementAdult && incrementChild && incrementRoom) {
 
         function changeCount(element) {
             const currCount = Number(element.textContent)
             if (event.target.textContent == "+") {
-                element.textContent = currCount + 1
+                element.textContent = currCount + 1;
             } else if (event.target.textContent == "-" && Number(element.textContent) > 0) {
-                    element.textContent = currCount - 1
+                    element.textContent = currCount - 1;
             }
         }
         
@@ -60,28 +167,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    function finderNumberOfVisitors() {
-
+    window.finderNumberOfVisitorsDoneButton = () => {
+        finderNumberOfVisitors();
+        document.getElementById("finderNumberOfVisitors").textContent = countAdult.textContent + " Adults - " + countChild.textContent + " children - " + countRoom.textContent + " room";
+        tripInfo.adult = countAdult.textContent;
+        tripInfo.child = countChild.textContent;
+        tripInfo.room = countRoom.textContent;
     }
 
+    //document.getElementById("finderNumberOfVisitorsDoneButton").addEventListener('click', finderNumberOfVisitorsDoneButton());
 
 
 
-    if (firstCalendarContainer && secondCalendarContainer) {
-        for (let day = 1; day <= daysInFirstMonth; day++) {
-            const button = document.createElement('button');
-            button.textContent = day;
-            button.classList.add('calendar-button');
-            firstCalendarContainer.appendChild(button);
-        }
 
-        for (let day = 1; day <= daysInSecondMonth; day++) {
-            const button = document.createElement('button');
-            button.textContent = day;
-            button.classList.add('calendar-button');
-            secondCalendarContainer.appendChild(button);
-        }
-    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function toggleDisplay(target, others) {
@@ -93,16 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-
-
-
-
-
-
-
-
-    
     
     //document.getElementById('finderDate').innerHTML = `${startingDate} ⸺ ${endingDate}  `;
     window.finderPlace = () => toggleDisplay(finderPlaceCard, [finderDateCard, finderNumberOfVisitorsExtensionCard]);
@@ -119,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputField = document.getElementById("finderPlace");
             inputField.value = choosenCity.textContent + ", " +  textNodes[0].nodeValue.trim();
         }
-        localStorage.setItem('choosenCity', inputField.value);
+        //localStorage.setItem('choosenCity', inputField.value);
+        tripInfo.place = inputField.value
     }
 
 
