@@ -91,9 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     endingDate = new Date("invalid-date-string");
                 }
             }
-            console.log("starting: " + startingDate);
-            console.log("ending: " + endingDate);
-            console.log(tripInfo)
+
 
         });
     });
@@ -121,9 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     endingDate = new Date("invalid-date-string");
                 }
             }
-            console.log("starting: " + startingDate);
-            console.log("ending: " + endingDate);
-            console.log(tripInfo)
+
 
         });
     });

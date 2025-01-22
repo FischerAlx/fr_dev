@@ -1,36 +1,5 @@
 :root {
-    /*
-    --colorOneColor: #cc9c9c;   
-    --colorTwoColor: #a4b4b4;   
-    --colorThreeColor: #746454; 
-    --colorDarkColor: #4c4443;  
-    --colorLightColor: #ecdccc;
-    */
 
-
-
-
-    /* 40% - 30% - 20% - 10% */
-    /*
-    --color40: #FFFAEC;
-    --color30: #F5ECD5;
-    --color20: #578E7E;
-    --color10: #3D3D3D;
-    */
-
-    /*
-    --color40: #155E95;
-    --color30: #6A80B9;
-    --color20: #F6C794;
-    --color10: #FFF6B3;
-    */     
-
-    /*
-    --color40: #1D1616;
-    --color30: #8E1616;
-    --color20: #D84040;
-    --color10: #EEEEEE;
-    */
 
     --mostBackgroundColor: #0f172a;
     --highlightedTextColor: #e2e8f0;
@@ -58,7 +27,6 @@ header {
 
 body, html {
     position: relative; 
-    height: 40vh;
     font-size: 14pt;
     margin: auto;
     max-width: 80%;
@@ -69,13 +37,9 @@ body, html {
 }
 
 main {
-    scale: 120%;
+
     min-height: 100%; 
     position:relative; 
-    top: 150%; 
-    left: 80%; 
-    transform: translate(-50%, -80%); 
-    
 
 }
 
@@ -460,10 +424,6 @@ td {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        scale: 80%;
-        top: 80%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
     }
 
     header {
