@@ -40,8 +40,8 @@
         <table>
             <tr>
                 <th><input id="finderPlace" type="text" name="text" class="textInput" onclick="finderPlace()" placeholder="Where are you going?">
-                    <div style="position: absolute;">
-                        <div class="card" id="finderPlaceExtension" style="top: -0; left: 0; position: absolute;">      <!-- -50px; left: 50px;  -->
+                    <section style="position: absolute;">
+                        <section class="card" id="finderPlaceExtension" style="top: -0; left: 0; position: absolute;">      <!-- -50px; left: 50px;  -->
                             <p>
                                 <b>Popular destination nearby</b>
                             </p>
@@ -52,89 +52,89 @@
                                 <li><button onclick="choosenCity(event)"><b>Hamburg</b> Germany</button></li>
                                 <li><button onclick="choosenCity(event)"><b>Black Forest</b> Germany</button></li>
                             </ul>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </th>
                 <th><button id="finderDate" type="button" onclick="finderDate()">Check-in Date ⸺ Check-out Date</button>
-                    <div style="position: absolute;">
-                        <div class="card" id="finderDateExtension" style="top: -0; left: 0;"> <!-- -50px; left: 250px;  -->
-                            <div style="display: flex; justify-content: space-around; width: 100%;">
-                                <button id="calendarFinderDateButton" type="button" onclick="calendarFinderDate()">Calendar</button>
-                                <button id="flexibleFinderDateButton" type="button" onclick="flexibleFinderDate()">I'm flexible.</button>
-                            </div>
-                            <div id="calendarFinderDate">
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button id="leftMonthCalendarFinderDate" type="button" onclick="leftMonthCalendarFinderDate()">&lt;</button>
-                                    <button id="firstMonthCalendarFinderDate" type="button" onclick="firstMonthCalendarFinderDate()">January 2025</button>
-                                    <button id="secondMonthCalendarFinderDate" type="button" onclick="secondMonthCalendarFinderDate()">February 2025</button>
-                                    <button id="rightMonthCalendarFinderDate" type="button" onclick="rightMonthCalendarFinderDate()">&gt;</button>
-                                </div>
-                                <div style="display: flex; padding: 0px;">
-                                    <div id="firstMonthCalendar"></div>
-                                    <div id="secondMonthCalendar"></div>
-                                </div>
-                                <div style="display: flex; flex-wrap: nowrap;">
-                                    <button type="button" onclick="">Exact dates</button>
-                                    <button type="button" onclick="">+\- 1day</button>
-                                    <button type="button" onclick="">+\- 2day</button>
-                                    <button type="button" onclick="">+\- 3day</button>
-                                    <button type="button" onclick="">+\- 7day</button>
-                                </div>
-                            </div>
-                            <div id="flexibleFinderDate" style="display: none;">
+                    <section style="position: absolute;">
+                        <section class="card" id="finderDateExtension" style="top: -0; left: 0;"> <!-- -50px; left: 250px;  -->
+                            <section style="display: flex; justify-content: space-around; width: 100%;">
+                                <button id="calendarFinderDateButton" type="button" onclick="">Calendar</button>                              <!-- calendarFinderDate()  -->
+                                <button id="flexibleFinderDateButton" type="button" onclick="openAlert()">I'm flexible.</button>              <!-- flexibleFinderDate()  -->
+                            </section>
+                            <section id="calendarFinderDate">
+                                <section style="display: flex; justify-content: space-between;">
+                                    <button id="leftMonthCalendarFinderDate" type="button" onclick="openAlert()">&lt;</button>                <!-- leftMonthCalendarFinderDate();    -->
+                                    <button id="firstMonthCalendarFinderDate" type="button">January 2025</button>       
+                                    <button id="secondMonthCalendarFinderDate" type="button">February 2025</button>     
+                                    <button id="rightMonthCalendarFinderDate" type="button" onclick="openAlert()">&gt;</button>               <!-- rightMonthCalendarFinderDate();   -->
+                                </section>
+                                <section style="display: flex; padding: 0px;">
+                                    <section id="firstMonthCalendar"></section>
+                                    <section id="secondMonthCalendar"></section>
+                                </section>
+                                <section style="display: flex; flex-wrap: nowrap;">
+                                    <button type="button" onclick="openAlert()">Exact dates</button>
+                                    <button type="button" onclick="openAlert()">+\- 1day</button>
+                                    <button type="button" onclick="openAlert()">+\- 2day</button>
+                                    <button type="button" onclick="openAlert()">+\- 3day</button>
+                                    <button type="button" onclick="openAlert()">+\- 7day</button>
+                                </section>
+                            </section>
+                            <section id="flexibleFinderDate" style="display: none;">
 
 
-                            </div>
-                        </div>
-                    </div>
+                            </section>
+                        </section>
+                    </section>
                 </th>
                 <th><button id="finderNumberOfVisitors" type="button" onclick="finderNumberOfVisitors()">2 Adults - 0 children - 1 room</button>
-                    <div style="position: absolute;">
-                        <div class="card" id="finderNumberOfVisitorsExtension" style="top: -0; left: 0;"> <!-- -50px; left: 400px;  -->
+                    <section style="position: absolute;">
+                        <section class="card" id="finderNumberOfVisitorsExtension" style="top: -0; left: 0;"> <!-- -50px; left: 400px;  -->
                             <table id="finderNumberOfVisitorsTable">
                                 <tr>
                                     <th colspan="2"><p>adults</p></th>
                                     <th>
-                                        <div class="countButtons">
+                                        <section class="countButtons">
                                             <button id="decrementAdult">-</button>
                                             <span id="countAdult">2</span>
                                             <button id="incrementAdult">+</button>
-                                        </div>
+                                        </section>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th colspan="2"><p>children</p></th>
                                     <th>
-                                        <div class="countButtons">
+                                        <section class="countButtons">
                                             <button id="decrementChild">-</button>
                                             <span id="countChild">0</span>
                                             <button id="incrementChild">+</button>
-                                        </div>
+                                        </section>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th colspan="2"><p>rooms</p></th>
                                     <th>
-                                        <div class="countButtons">
+                                        <section class="countButtons">
                                             <button id="decrementRoom">-</button>
                                             <span id="countRoom">1</span>
                                             <button id="incrementRoom">+</button>
-                                        </div>
+                                        </section>
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><div style="height: 1px; background: var(--color40);"></div></th>
+                                    <th colspan="3"><section style="height: 1px; background: var(--color40);"></section></th>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><p>Arriving with pets?</p></th>
+                                    <!-- <th colspan="2"><p>Arriving with pets?</p></th> -->
                                     <th></th>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><button id="finderNumberOfVisitorsDoneButton" onclick="finderNumberOfVisitorsDoneButton()" style="font-size: large; "><b>Done!</b></button></th>
                                 </tr>
                             </table>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </th>
                 <th>
                     <!-- <button id="finderSearch" type="button" onclick="finderSearch()">Search</button>  style="font-size: large;"-->

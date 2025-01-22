@@ -281,5 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(localStorage.getItem("tripInfo"))
 
 
+
+
+    window.openAlert = () => {
+        alert("coming soon!");
+    } 
 });
 
