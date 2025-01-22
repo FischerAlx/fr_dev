@@ -48,6 +48,16 @@ main {
     width: 100%;
 }
 
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    position: relative;
+    top: 150%;
+    justify-content: center space-between; 
+    align-items: center;
+}
+
 h1 {
     color:var(--highlightedTextColor);
 }
