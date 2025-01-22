@@ -28,7 +28,7 @@ body, html {
     position: relative; 
     font-size: 14pt;
     margin: auto;
-    max-width: 80%;
+    max-width: 75%;
     background-color: var(--mostBackgroundColor);
     color: var(--mainTextColor);
     z-index: -1000;

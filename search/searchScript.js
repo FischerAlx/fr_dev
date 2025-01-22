@@ -15,14 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
         clonedCard.id = `searchRes-${i}`; // Уникальный ID для каждой карточки
 
         // Изменяем содержимое
-        clonedCard.querySelector('.cardTitle').textContent = `Card Title ${i}`;
-        clonedCard.querySelector('.cardDescription').textContent = `This is card number ${i}`;
+        clonedCard.querySelector('.cardTitle').textContent = (JSON.parse(localStorage.getItem("info"))).place + ` ${i}`;
+        clonedCard.querySelector('.cardDescription').textContent = 
+            `from: ${(JSON.parse(localStorage.getItem("info"))).startingDate}
+            to: ${(JSON.parse(localStorage.getItem("info"))).endingDate}
+            for ${Number((JSON.parse(localStorage.getItem("info"))).adult)+Number((JSON.parse(localStorage.getItem("info"))).child)} persons and ${(JSON.parse(localStorage.getItem("info"))).room} rooms
+            `
+        //`This is card number ${i}`;
 
         // Добавляем карточку в контейнер
         container.appendChild(clonedCard);
     }
 
 
+
+
+    console.log(localStorage.getItem("userInfo"))
+    console.log(localStorage.getItem("tripInfo"))
 });
 
 

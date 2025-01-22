@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalContainer = document.getElementById('modalContainer');
     const openModalButton = document.getElementById('openModal');
 
+    const user = {
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+    }
+
     if (openModalButton) {
         openModalButton.addEventListener('click', () => {
 
@@ -34,31 +41,36 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
 
-            const firstname = document.querySelector('[name="firstname"]').value;
-            const lastname = document.querySelector('[name="lastname"]').value;
-            const email = document.querySelector('[name="email"]').value;
-            const password = document.querySelector('[name="password"]').value;
+            user.firstname = document.querySelector('[name="firstname"]').value;
+            user.lastname = document.querySelector('[name="lastname"]').value;
+            user.email = document.querySelector('[name="email"]').value;
+            user. password = document.querySelector('[name="password"]').value;
 
-            localStorage.setItem('firstname', firstname);
-            localStorage.setItem('lastname', lastname);
-            localStorage.setItem('email', email);
-            localStorage.setItem('password', password);
+            //localStorage.setItem('firstname', firstname);
+            //localStorage.setItem('lastname', lastname);
+            //localStorage.setItem('email', email);
+            //localStorage.setItem('password', password);
+
+            localStorage.setItem("userInfo", JSON.stringify(user));
 
 
-
-
-            console.log('User Data saved to localStorage:', {
-                firstname,
-                lastname,
-                email,
-                password
-            });
 
 
 
 
         });
     }
+
+
+
+    window.openAlert = () => {
+        alert("coming soon!");
+        console.log(localStorage.getItem("userInfo"))
+    } 
+
+
+    console.log(localStorage.getItem("userInfo"))
+    console.log(localStorage.getItem("tripInfo"))
     
 });
 

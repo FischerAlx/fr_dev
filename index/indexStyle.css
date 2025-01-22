@@ -61,7 +61,7 @@ body, html {
     height: 40vh;
     font-size: 14pt;
     margin: auto;
-    max-width: 80%;
+    max-width: 75%;
     background-color: var(--mostBackgroundColor);
     color: var(--mainTextColor);
     z-index: -1000;
@@ -112,6 +112,8 @@ a, button {
     transition: all 0.1s;
     color: var(--buttonTextColor);
     text-decoration: none;
+
+
 }
 
 

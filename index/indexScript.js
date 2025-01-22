@@ -20,16 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const finderDateCard = document.getElementById('finderDateExtension');
     const finderNumberOfVisitorsExtensionCard = document.getElementById('finderNumberOfVisitorsExtension');
 
+    let isFinderPlaceFilled = false;
+    let isFinderDateFilled = false;
 
+    //console.log(isFinderPlaceFilled, isFinderDateFilled)
 
     const tripInfo = {
         place: "",
         startingDate: null,
         endingDate: null,
-        adult: 0,
+        adult: 2,
         child: 0,
-        room: 0,
+        room: 1,
     }
+
+    //console.log(tripInfo)
 
     let startingDate = new Date("invalid-date-string");
     let endingDate = new Date("invalid-date-string");
@@ -47,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
+//      everything about            id="finderDate"
 
     if (firstCalendarContainer && secondCalendarContainer) {
         for (let day = 1; day <= daysInFirstMonth; day++) {
@@ -69,58 +75,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     firstCalendarButtons.forEach(button => {
         button.addEventListener('click', () => {
-            console.log("starting: " + startingDate);
-            console.log("ending: " + endingDate);
-            console.log(tripInfo)
+            //console.log("starting: " + startingDate);
+            //console.log("ending: " + endingDate);
+            //console.log(tripInfo)
             if (isNaN(startingDate)) {
                 startingDate = new Date();
                 startingDate.setDate(parseInt(button.textContent));
                 startingDate.setMonth(0);
-                tripInfo.startingDate = startingDate.getDate() + ", " + (startingDate.getMonth() + 1);
-                button.style.background = '#122b39';
-                console.log(button);
+
+                const startingMonthName = startingDate.toLocaleString('en-US', { month: 'short' });
+
+                tripInfo.startingDate = startingDate.getDate() + ", " + startingMonthName;
+                document.getElementById('finderDate').textContent = 
+                    startingDate.getDate() + ". " + startingMonthName + " ⸺ Check-out Date";
+                //button.style.background = '#122b39';
             } else {
                 let bufDate = new Date(2025, 0, parseInt(button.textContent))
                 if (startingDate < bufDate) {
                     endingDate = new Date();
                     endingDate.setDate(parseInt(button.textContent));
                     endingDate.setMonth(0);
-                    tripInfo.endingDate = endingDate.getDate() + ", " + (endingDate.getMonth() + 1);
-                    button.style.background = '#122b39';
+
+                    const startingMonthName = startingDate.toLocaleString('en-US', { month: 'short' });
+                    const endingMonthName = endingDate.toLocaleString('en-US', { month: 'short' });
+
+                    tripInfo.endingDate = endingDate.getDate() + ", " + endingMonthName;
+                    document.getElementById('finderDate').textContent = 
+                        startingDate.getDate() + ". " + startingMonthName + " ⸺ " + 
+                        endingDate.getDate() + ". " + endingMonthName;
+                    //console.log(document.getElementById('finderDate').textContent);
+                    //button.style.background = '#122b39';
+
                     startingDate = new Date("invalid-date-string");
                     endingDate = new Date("invalid-date-string");
+                    finderNumberOfVisitors();
+                    isFinderDateFilled = true;
                 }
             }
-
-
+            //console.log("starting: " + startingDate);
+            //console.log("ending: " + endingDate);
+            //console.log(tripInfo)
         });
     });
     secondCalendarButtons.forEach(button => {
         button.addEventListener('click', () => {
-            console.log("starting: " + startingDate);
-            console.log("ending: " + endingDate);
-            console.log(tripInfo)
             if (isNaN(startingDate)) {
                 startingDate = new Date();
                 startingDate.setDate(parseInt(button.textContent));
                 startingDate.setMonth(1);
-                tripInfo.startingDate = startingDate.getDate() + ", " + (startingDate.getMonth() + 1);
-                button.style.background = '#122b39';
-                console.log(button);
+
+                const startingMonthName = startingDate.toLocaleString('en-US', { month: 'short' });
+
+                tripInfo.startingDate = startingDate.getDate() + ", " + startingMonthName;
+                document.getElementById('finderDate').textContent = 
+                    startingDate.getDate() + ". " + startingMonthName + " ⸺ Check-out Date";
             } else {
                 let bufDate = new Date(2025, 1, parseInt(button.textContent))
                 if (startingDate < bufDate) {
                     endingDate = new Date();
                     endingDate.setDate(parseInt(button.textContent));
                     endingDate.setMonth(1);
-                    tripInfo.endingDate = endingDate.getDate() + ", " + (endingDate.getMonth() + 1);
-                    button.style.background = '#122b39';
+
+                    const startingMonthName = startingDate.toLocaleString('en-US', { month: 'short' });
+                    const endingMonthName = endingDate.toLocaleString('en-US', { month: 'short' });
+
+                    tripInfo.endingDate = endingDate.getDate() + ", " + endingMonthName;
+                    document.getElementById('finderDate').textContent = 
+                        startingDate.getDate() + ". " + startingMonthName + " ⸺ " + 
+                        endingDate.getDate() + ". " + endingMonthName;
+
                     startingDate = new Date("invalid-date-string");
                     endingDate = new Date("invalid-date-string");
+                    finderNumberOfVisitors();
+                    isFinderDateFilled = true;
                 }
             }
-
-
         });
     });
 
@@ -136,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+//      everything about            id="finderNumberOfVisitors"
 
     if (decrementAdult && decrementChild && decrementRoom && incrementAdult && incrementChild && incrementRoom) {
 
@@ -150,7 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         function crement(element) {
-            return (event) => {changeCount(element);}  
+            return (event) => {
+                changeCount(element);
+                updateCountText();
+            }  
         }
 
         decrementAdult.addEventListener('click', crement(countAdult)); 
@@ -163,16 +195,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    window.finderNumberOfVisitorsDoneButton = () => {
-        finderNumberOfVisitors();
+    function updateCountText() {
         document.getElementById("finderNumberOfVisitors").textContent = countAdult.textContent + " Adults - " + countChild.textContent + " children - " + countRoom.textContent + " room";
         tripInfo.adult = countAdult.textContent;
         tripInfo.child = countChild.textContent;
         tripInfo.room = countRoom.textContent;
     }
 
-    //document.getElementById("finderNumberOfVisitorsDoneButton").addEventListener('click', finderNumberOfVisitorsDoneButton());
+    window.finderNumberOfVisitorsDoneButton = () => {
+        finderNumberOfVisitors();
+        updateCountText();
+        goingSearch();
 
+    }
+
+    window.sendingTripInfo = () => {
+        if (isFinderDateFilled && isFinderPlaceFilled) {
+            localStorage.setItem("tripInfo", JSON.stringify(tripInfo));
+        }
+    }
+
+    window.goingSearch = () => {
+        if (!(isFinderDateFilled && isFinderPlaceFilled)) {
+            localStorage.setItem("tripInfo", JSON.stringify(tripInfo));
+            alert("not everthing is filled!");
+        } else {
+            localStorage.setItem("tripInfo", JSON.stringify(tripInfo));
+            window.location.href='../search/search.html';
+        }
+    }
 
 
 
@@ -211,20 +262,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const choosenCity = buttonOfChoosenCity.querySelector("b"); 
         const textNodes = Array.from(buttonOfChoosenCity.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
         //document.getElementById("finderPlace").placeholder = choosenCity.textContent;
-        if (choosenCity) {
-            const inputField = document.getElementById("finderPlace");
-            inputField.value = choosenCity.textContent + ", " +  textNodes[0].nodeValue.trim();
-        }
+
+        const inputField = document.getElementById("finderPlace");
+        inputField.value = choosenCity.textContent + ", " +  textNodes[0].nodeValue.trim();
+
         //localStorage.setItem('choosenCity', inputField.value);
-        tripInfo.place = inputField.value
+        tripInfo.place = inputField.value;
+        console.log(tripInfo)
+        isFinderPlaceFilled = true;
+        sendingTripInfo();
     }
 
 
 
 
 
-
-
+    console.log(localStorage.getItem("userInfo"))
+    console.log(localStorage.getItem("tripInfo"))
 
 
 });
