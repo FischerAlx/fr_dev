@@ -3,13 +3,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalContainer = document.getElementById('modalContainer');
     const openModalButton = document.getElementById('openModal');
 
-    const user = {
+    const user = { // mit diesem user-Objekt kann man später arbeiten
         firstname: "",
         lastname: "",
         email: "",
         password: "",
     }
 
+
+    
+    if (document.getElementById('registrationForm')) {
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+
+            user.firstname = document.querySelector('[name="firstname"]').value;
+            user.lastname = document.querySelector('[name="lastname"]').value;
+            user.email = document.querySelector('[name="email"]').value;
+            user.password = document.querySelector('[name="password"]').value;
+
+            //localStorage.setItem('firstname', firstname);
+            //localStorage.setItem('lastname', lastname);
+            //localStorage.setItem('email', email);
+            //localStorage.setItem('password', password);
+
+            localStorage.setItem("userInfo", JSON.stringify(user));
+
+        });
+    }
+
+
+    window.openAlert = () => {
+        alert("coming soon!");
+        console.log(localStorage.getItem("userInfo"))
+    } 
+
+    // Noch nicht verwendet, aber als wichtige Vorlage für mögliche Szenarien angedeutet
     if (openModalButton) {
         openModalButton.addEventListener('click', () => {
 
@@ -33,39 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert('authorization is not implemented at the moment!');
             });
         });
-    }   
-
-    
-    if (document.getElementById('registrationForm')) {
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-
-            user.firstname = document.querySelector('[name="firstname"]').value;
-            user.lastname = document.querySelector('[name="lastname"]').value;
-            user.email = document.querySelector('[name="email"]').value;
-            user. password = document.querySelector('[name="password"]').value;
-
-            //localStorage.setItem('firstname', firstname);
-            //localStorage.setItem('lastname', lastname);
-            //localStorage.setItem('email', email);
-            //localStorage.setItem('password', password);
-
-            localStorage.setItem("userInfo", JSON.stringify(user));
-
-
-
-
-
-
-        });
-    }
-
-
-
-    window.openAlert = () => {
-        alert("coming soon!");
-        console.log(localStorage.getItem("userInfo"))
     } 
 
 

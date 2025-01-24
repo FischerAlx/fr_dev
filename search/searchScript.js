@@ -1,29 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const countOfCards = 10; // Сколько раз нужно продублировать
-    const container = document.getElementById('container'); // Куда добавляем карточки
-    const searchResTemplate = document.getElementById('searchRes'); // Исходная карточка
+    console.log(localStorage.getItem("userInfo"))
+    console.log(localStorage.getItem("tripInfo"))
+    const countOfCards = 10; // Die Anzahl der Varianten wird später durch die vom Server erhaltene Antwort festgelegt
+    const container = document.getElementById('container'); // Wo wir die Karten hinzufügen
+    const searchResTemplate = document.getElementById('searchRes'); // Quellkarte
 
     if (!searchResTemplate) {
-        console.error("Элемент с id 'searchRes' не найден.");
+        console.error("Das Element mit der id 'searchRes' wurde nicht gefunden.");
         return;
     }
 
-    for (let i = 1; i <= countOfCards; i++) {
-        // Клонируем карточку
-        const clonedCard = searchResTemplate.cloneNode(true);
-        clonedCard.style.display = "flex"; // Убираем скрытие
-        clonedCard.id = `searchRes-${i}`; // Уникальный ID для каждой карточки
+    // es ist möglich, dem Server eine Anfrage mit dem erforderlichen Suchobjekt zu senden 
+    // und die erhaltene Variantenliste mit Hilfe einer Schleife zu öffnen und zu speichern, 
+    // um dann alle Varianten auf Karten entsprechend den zuvor gespeicherten Varianten zu geben 
+    // (mit anderen Worten, die Karten werden nicht identisch sein).
 
-        // Изменяем содержимое
-        clonedCard.querySelector('.cardTitle').textContent = (JSON.parse(localStorage.getItem("info"))).place + ` ${i}`;
-        clonedCard.querySelector('.cardDescription').textContent = 
-            `from: ${(JSON.parse(localStorage.getItem("info"))).startingDate}
-            to: ${(JSON.parse(localStorage.getItem("info"))).endingDate}
-            for ${Number((JSON.parse(localStorage.getItem("info"))).adult)+Number((JSON.parse(localStorage.getItem("info"))).child)} persons and ${(JSON.parse(localStorage.getItem("info"))).room} rooms
+    for (let i = 1; i <= countOfCards; i++) {
+        // Klonen der Karte
+        const clonedCard = searchResTemplate.cloneNode(true);
+        clonedCard.style.display = "flex";
+        clonedCard.id = `searchRes-${i}`; // Eindeutige ID für jede Karte
+
+        // Ändern des Inhalts
+        clonedCard.querySelector('.cardTitle').textContent = (JSON.parse(localStorage.getItem("tripInfo"))).place + ` ${i}`;
+        clonedCard.querySelector('.cardDescription').innerHTML  =
+            `from: ${(JSON.parse(localStorage.getItem("tripInfo"))).startingDate} <br>
+            to: ${(JSON.parse(localStorage.getItem("tripInfo"))).endingDate} <br>
+            for ${Number((JSON.parse(localStorage.getItem("tripInfo"))).adult)+Number((JSON.parse(localStorage.getItem("tripInfo"))).child)} persons - ${(JSON.parse(localStorage.getItem("tripInfo"))).room} rooms <br>
             `
         //`This is card number ${i}`;
 
-        // Добавляем карточку в контейнер
+        // Hinzufügen einer Karte zum Container
         container.appendChild(clonedCard);
     }
 

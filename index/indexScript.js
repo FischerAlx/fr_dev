@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //console.log(tripInfo)
 
-    let startingDate = new Date("invalid-date-string");
+    let startingDate = new Date("invalid-date-string"); 
     let endingDate = new Date("invalid-date-string");
 
 
@@ -51,8 +51,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+    // die ganze Logik, eine Karte zu ziehen und die anderen zu verstecken.
+
+    function toggleDisplay(target, others) {
+        const isHidden = target.style.display === "none" || target.style.display === "";
+
+        target.style.display = isHidden ? "block" : "none";
+        others.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    window.finderPlace = () => toggleDisplay(finderPlaceCard, [finderDateCard, finderNumberOfVisitorsExtensionCard]);
+    window.finderDate = () => toggleDisplay(finderDateCard, [finderPlaceCard, finderNumberOfVisitorsExtensionCard]);
+    window.finderNumberOfVisitors = () => toggleDisplay(finderNumberOfVisitorsExtensionCard, [finderPlaceCard, finderDateCard]);
     
-//      everything about            id="finderDate"
+ 
+
+
+
+
+
+
+
+
+    // alles über id="finderPlace"
+
+    window.choosenCity = function() {
+        finderPlace();
+        finderDateCard.style.display = "block";
+        const buttonOfChoosenCity = event.currentTarget; 
+        const choosenCity = buttonOfChoosenCity.querySelector("b"); 
+        const textNodes = Array.from(buttonOfChoosenCity.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+
+        const inputField = document.getElementById("finderPlace");
+        inputField.value = choosenCity.textContent + ", " +  textNodes[0].nodeValue.trim();
+
+        tripInfo.place = inputField.value;
+        console.log(tripInfo)
+        isFinderPlaceFilled = true;
+        sendingTripInfo();
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+    // alles über id="finderDate"
 
     if (firstCalendarContainer && secondCalendarContainer) {
         for (let day = 1; day <= daysInFirstMonth; day++) {
@@ -164,8 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-//      everything about            id="finderNumberOfVisitors"
+    // alles über id="finderNumberOfVisitors"
 
     if (decrementAdult && decrementChild && decrementRoom && incrementAdult && incrementChild && incrementRoom) {
 
@@ -209,6 +261,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+   
+
+
+
+
+
+
+
+
+    // wichtige Unterstützungsfunktionen
+
     window.sendingTripInfo = () => {
         if (isFinderDateFilled && isFinderPlaceFilled) {
             localStorage.setItem("tripInfo", JSON.stringify(tripInfo));
@@ -225,66 +288,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function toggleDisplay(target, others) {
-        const isHidden = target.style.display === "none" || target.style.display === "";
-
-        target.style.display = isHidden ? "block" : "none";
-        others.forEach(element => {
-            element.style.display = "none";
-        });
-    }
-
-    
-    //document.getElementById('finderDate').innerHTML = `${startingDate} ⸺ ${endingDate}  `;
-    window.finderPlace = () => toggleDisplay(finderPlaceCard, [finderDateCard, finderNumberOfVisitorsExtensionCard]);
-    window.finderDate = () => toggleDisplay(finderDateCard, [finderPlaceCard, finderNumberOfVisitorsExtensionCard]);
-    window.finderNumberOfVisitors = () => toggleDisplay(finderNumberOfVisitorsExtensionCard, [finderPlaceCard, finderDateCard]);
-    window.choosenCity = function() {
-        finderPlace();
-        finderDateCard.style.display = "block";
-        const buttonOfChoosenCity = event.currentTarget; 
-        const choosenCity = buttonOfChoosenCity.querySelector("b"); 
-        const textNodes = Array.from(buttonOfChoosenCity.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
-        //document.getElementById("finderPlace").placeholder = choosenCity.textContent;
-
-        const inputField = document.getElementById("finderPlace");
-        inputField.value = choosenCity.textContent + ", " +  textNodes[0].nodeValue.trim();
-
-        //localStorage.setItem('choosenCity', inputField.value);
-        tripInfo.place = inputField.value;
-        console.log(tripInfo)
-        isFinderPlaceFilled = true;
-        sendingTripInfo();
-    }
-
-
-
-
+    window.openAlert = () => {
+        alert("coming soon!");
+    } 
 
     console.log(localStorage.getItem("userInfo"))
     console.log(localStorage.getItem("tripInfo"))
 
-
-
-
-    window.openAlert = () => {
-        alert("coming soon!");
-    } 
 });
 
